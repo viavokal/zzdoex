@@ -25,17 +25,17 @@ This solution assumes you have the following up and ready:
 1. Ansible (of version 2.3.0 or higher) installed on another host with ssh access to all of the above hosts
 1. An ansible hosts file or inventory file listing the three hosts from prerequisite #1 under [cassandra_nodes], see example file under 'zooz.technical-task/hosts.example'
 
-Docker:    
+##### Docker:    
 This solution assumes that apart from the prerequisites listed above, each candidate host to be proivisioned by the provided Ansible playbook(s) will be installed with a fresh installation of Docker (community edition), including whatever dependencies required to have it installed (implemented via roles/zooz_cassandra/tasks/prerequisites.yml)
 
 If this solution was to be deployed on a fully operational production environment, some steps, such as getting the latest version of docker-ce, were to be replaced (in this case - setting a repository to get a specific Docker version)
 
-Ansible:
+##### Ansible:
 I've chosen to use the built in "docker_container" module in order to implement cassandra cluster creation with this solution.
 At first I tried implementing this with the "docker_service" module tested on boot2docker, yet eventualy this solution was shelved.
 Also was consiedered was a method of a pre-composed cassandra.yaml j2 template file in order to setup the created cassandra instance with the relevant configuration required for it to be a part of a ring.
 
-Ansible Roles & Tasks:
+##### Ansible Roles & Tasks:
 
 zooz.technical-task -
 * site.yml: Invokes the cluster create & repair roles while setting play required configuration and variables
@@ -47,17 +47,15 @@ roles/zooz_cassandra -
 roles/zooz_cassandra_repair -
 * tasks/main.yml:	Issuing a 'notedool repair' command on the running docker cassandra node container. If played on all cluster nodes, it's run synchrounously and blocks until each and every node in the ring completes it's run successfully one after the other. As per task requirements, I've also included a failure handling implementation, currently commented out, which prevents the entire role to be stopped in case of one node failing to repair, while handling such failure with a debug message for the specific node (can be expanded to be handled in any other way such as retry/reschedule/send mail etc.)
 
-Activation Scripts:
+##### Activation Scripts:
 
 Cluster Create:
-
 This script issues an ansible-playbook to run on the zooz_cassandra role
 
 Run by issuing the following command from the solution root directory:
 > ./cluster_create.sh
 
 Node Repair
-
 This script issues an ansible-playbook to run on the zooz_cassandra_repair role
 
 Run by issuing the following command from the solution root directory:
