@@ -44,13 +44,13 @@ roles/zooz_cassandra_repair -
 * tasks/main.yml:	Issuing a 'notedool repair' command on the running docker cassandra node container. If played on all cluster nodes, it's run synchrounously and blocks until each and every node in the ring completes it's run successfully one after the other. As per task requirements, I've also included a failure handling implementation, currently commented out, which prevents the entire role to be stopped in case of one node failing to repair, while handling such failure with a debug message for the specific node (can be expanded to be handled in any other way such as retry/reschedule/send mail etc.)
 
 ##### Activation Scripts:
-* Cluster Create: This script issues an ansible-playbook to run on the zooz_cassandra role
-
+###### Cluster Create 
+This script issues an ansible-playbook to run on the zooz_cassandra role
 Run by issuing the following command from the solution root directory:
 > ./cluster_create.sh
 
-* Node Repair: This script issues an ansible-playbook to run on the zooz_cassandra_repair role
-
+###### Node Repair 
+This script issues an ansible-playbook to run on the zooz_cassandra_repair role
 Run by issuing the following command from the solution root directory:
 > ./node_repair.sh
 
