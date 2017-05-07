@@ -6,18 +6,17 @@ Welcome to my solution for the Zooz technical task. As per task outline, I've im
 
 #### Solution Specification
 
-1.zooz.technical-task (site.yml): A Docker install and cassandra node(s) creation in a ring ansible playbook, as well as automatically repair the created node(s)
-1.zooz_cassandra: An Ansible role which implements docker installation and cassnadra node creation
-1.zooz_cassandra_repair: An Ansible role which implements cassandra over docker node repair
-1.cluster_create.sh, node_repair.sh: a couple of shell scripts to issue each of the above Ansible roles seperately
+1. zooz.technical-task (site.yml): A Docker install and cassandra node(s) creation in a ring ansible playbook, as well as automatically repair the created node(s)
+1. zooz_cassandra: An Ansible role which implements docker installation and cassnadra node creation
+1. zooz_cassandra_repair: An Ansible role which implements cassandra over docker node repair
+1. cluster_create.sh, node_repair.sh: a couple of shell scripts to issue each of the above Ansible roles seperately
 
 #### Considerations & Guidelines
 
 This solution is built to support a multi node cassandra cluster with each node running on a seperate host,
 While the host running ansible is a seperated host from the designated cassandra hosts.
 
-Prerequisistes: 
-
+##### Prerequisistes: 
 This solution assumes you have the following up and ready:
 1. Three (as per task details) up and running Ubuntu 16.04 hosts with:
 	1. A user named "ubuntu"
