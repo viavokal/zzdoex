@@ -45,10 +45,12 @@ roles/zooz_cassandra_repair -
 
 ##### Activation Scripts:
 * Cluster Create: This script issues an ansible-playbook to run on the zooz_cassandra role
+
 Run by issuing the following command from the solution root directory:
 > ./cluster_create.sh
 
 * Node Repair: This script issues an ansible-playbook to run on the zooz_cassandra_repair role
+
 Run by issuing the following command from the solution root directory:
 > ./node_repair.sh
 
